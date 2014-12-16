@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="me">
+  <head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	
+	<script>
+		<!-- Angular code goes here -->
+		var app = angular.module('me',[]);
+		
+		app.controller('AboutController',function(){
+			
+			this.name='Chase';
+			this.age=18;
+			this.stuffILike=['music','awesomness','trampolines']
+			//adding a function
+			this.showStuffILike=true;
+			this.getOlder=function(){
+				this.age++; //increment age by 1
+				
+				
+			};
+			this.toggleStuff=function(){
+				this.showStuffILike =!this.showStuffILike;
+			};
+		});
+	</script>
+  </head>
+
+  <body ng-controller="AboutController as aboutCtrl">
+    <div class="container">
+		<h1>{{ aboutCtrl.name}}</h1>
+		<p>
+			My age is {{aboutCtrl.age}}. Next year I will be {{aboutCtrl.age+1}}. Years Awesome.
+		</p>
+		<button class="btn"ng-click="aboutCtrl.toggleStuff()">
+			Toggle Stuff
+		</button>
+		<ul ng-show="aboutCtrl.showStuffILike">
+			<li ng-repeat="thing in aboutCtrl.stuffILike">
+				{{thing}}
+			</li>
+		</ul>
+		<div>
+			Two way data binding Name: 
+			<input type="text" ng-model="aboutCtrl.name"/>
+		</div>
+		<div>
+			Calling functions
+			<button class="btn"ng-click="aboutCtrl.getOlder()">
+				Get Older
+			</button>
+		</div>
+
+   
+	</div>
+  </body>
+</html>
